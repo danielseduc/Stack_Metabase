@@ -1,0 +1,40 @@
+version: '3.8'
+
+networks:
+  metabase_net:
+    driver: bridge
+
+services:
+  bd-mysql:
+    image: mysql:latest
+    networks:
+      - metabase_net
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: metabase
+      MYSQL_ROOT_PASSWORD: getag2022
+      MYSQL_USER: getag
+      MYSQL_PASSWORD: getag2022
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    volumes:
+      - ./dados_mysql:/var/lib/mysql
+    ports:
+      - '3306:3306'
+
+  metabase:
+    image: metabase/metabase:latest
+    networks:
+      - metabase_net
+    restart: always
+    environment:
+      MB_DB_TYPE: mysql
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 3306
+      MB_DB_USER: root
+      MB_DB_PASS: getag2022
+      MB_DB_HOST: bd-mysql
+    volumes:
+    - ./dados_metabase:/metabase-data
+    ports:
+      - 3000:3000
