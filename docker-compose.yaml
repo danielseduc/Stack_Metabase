@@ -13,9 +13,9 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: metabase
-      MYSQL_ROOT_PASSWORD: getag2022
+      MYSQL_ROOT_PASSWORD: getag
       MYSQL_USER: getag
-      MYSQL_PASSWORD: getag2022
+      MYSQL_PASSWORD: getag
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
       - ./dados_mysql:/var/lib/mysql
@@ -31,8 +31,8 @@ services:
       MB_DB_TYPE: mysql
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 3306
-      MB_DB_USER: root
-      MB_DB_PASS: getag2022
+      MB_DB_USER: getag
+      MB_DB_PASS: getag
       MB_DB_HOST: bd-mysql
     volumes:
     - ./dados_metabase:/metabase-data
